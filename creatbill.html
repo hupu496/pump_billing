@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIRTHA FUEL CENTER - Create Bill</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div id="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header d-flex">
+                <h4 class="text-center flex-grow-1">TIRTHA FUEL CENTER</h4>
+                <button class="btn-close btn-close-white mobile-only" onclick="toggleSidebar()" aria-label="Close"></button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt me-2"></i> Dashboard</a></li>
+                <li><a href="createbill.html"><i class="fas fa-file-invoice me-2"></i> Create Bill</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-bar me-2"></i> Reports</a></li>
+                <li><a href="index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand navbar-light navbar-custom mb-4">
+                <div class="container-fluid">
+                    <button class="navbar-toggler menu-toggle" type="button" onclick="toggleSidebar()">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-nav ms-auto">
+                        <span class="navbar-text me-3">
+                            Welcome, <strong>Admin</strong>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Create Bill Content -->
+            <div class="dashboard-page">
+                <button class="btn btn-secondary mobile-only mobile-back-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-arrow-left me-1"></i> Back
+                </button>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4>Create New Bill</h4>
+                    <button class="btn btn-primary desktop-only" onclick="window.location.href='billpreview.html'">Generate Bill</button>
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" id="billForm" action="" name="contact-form" >
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="vehicleNumber" class="form-label">FP ID</label>
+                                    <input type="text" class="form-control" name="FP ID" id="vehicleNumber" required>
+                                </div>
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="vehicleNumber" class="form-label">NOZL NO</label>
+                                    <input type="text" name="NOZL" class="form-control" id="vehicleNumber" required>
+                                </div>
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="vehicleNumber" class="form-label">Vehicle Number</label>
+                                    <input type="text" class="form-control" name="vehicleno" id="vehicleNumber" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fuelType" class="form-label">Fuel Type</label>
+                                    <select class="form-select" id="fuelType" required>
+                                        <option value="">Select Fuel</option>
+                                        <option value="Petrol">Petrol</option>
+                                        <option value="Diesel">Diesel</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="quantity" class="form-label">DENSITY</label>
+                                    <input type="number" class="form-control" name="Density" id="quantity" min="1" required>
+                                </div>
+                               
+                                <div class="col-md-6">
+                                    <label for="rate" class="form-label">Rate per Liter</label>
+                                    <input type="number" class="form-control" id="rate" name="Rate" min="1" step="0.01" required>
+                                </div>
+                                 <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="quantity" class="form-label">sale</label>
+                                    <input type="number" class="form-control" id="sale" name="sale" min="1" required>
+                                </div>
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="quantity" class="form-label">VOLUME</label>
+                                     <input type="text" id="volume" name="Volume" class="form-control" readonly>
+                                </div>
+                               
+                            </div>
+                            <div class="mobile-only mt-3">
+                                <button class="btn btn-primary w-100" onclick="window.location.href='billpreview.html'">Generate Bill</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Google Sheet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <script src="assets/js/common.js"></script>
+ <script>
+function calculateVolume() {
+    // Get the rate and sale input values
+    const rate = parseFloat(document.getElementById('rate').value);
+    const sale = parseFloat(document.getElementById('sale').value);
+
+    // Check if both rate and sale are valid numbers
+    if (!isNaN(rate) && !isNaN(sale) && rate > 0) {
+        // Calculate the volume
+        const volume = sale / rate;
+        // Display the volume in the volume field
+        document.getElementById('volume').value = volume.toFixed(2); // Display with 2 decimal places
+    } else {
+        // Clear the volume field if inputs are invalid
+        document.getElementById('volume').value = '';
+    }
+}
+</script>
+<script>
+    const scriptURL = 'Your Google App Script URL'
+
+const form = document.forms['contact-form']
+
+form.addEventListener('submit', e => {
+  
+  e.preventDefault()
+  
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+  .then(response => alert("Thank you! Form is submitted" ))
+  .then(() => { window.location.reload(); })
+  .catch(error => console.error('Error!', error.message))
+})
+</script>
+</body>
+</html>

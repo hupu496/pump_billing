@@ -1,0 +1,257 @@
+/* Base Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Login Page Styles */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-logo a {
+    font-size: 24px;
+    font-weight: 800;
+    color: orange;
+    text-decoration: none;
+}
+
+.login-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-card-body {
+    padding: 2rem;
+}
+
+.btn-login {
+    background-color: orange;
+    border: none;
+}
+
+.btn-login:hover {
+    background-color: #e67e00;
+}
+
+/* Dashboard Styles */
+#dashboard {
+    min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    height: 100vh;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar-menu li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+/* Sidebar Close Button Styles */
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 1;
+    background-size: 1em;
+    padding: 0.5em;
+}
+
+/* Make sure the close button only appears on mobile */
+@media (min-width: 769px) {
+    .sidebar-header .btn-close {
+        display: none !important;
+    }
+}
+
+/* Adjust sidebar header alignment */
+.sidebar-header {
+    position: relative;
+}
+/* Main Content Styles */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: all 0.3s;
+}
+
+.navbar-custom {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+}
+
+/* Dashboard Page Styles */
+.dashboard-page {
+    display: block;
+}
+
+.stat-card {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bill Styles */
+.bill-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.bill-header, .bill-footer {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.bill-header {
+    border-bottom: 1px dashed #ddd;
+    margin-bottom: 15px;
+}
+
+.bill-footer {
+    border-top: 1px dashed #ddd;
+    margin-top: 15px;
+}
+
+.bill-table {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.bill-table td {
+    padding: 5px 0;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #printableBill, #printableBill * {
+        visibility: visible;
+    }
+    #printableBill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: 80%;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .menu-toggle {
+        display: block !important;
+    }
+    
+    /* Hide desktop elements on mobile */
+    .desktop-only {
+        display: none !important;
+    }
+    
+    /* Show mobile elements */
+    .mobile-only {
+        display: block !important;
+    }
+}
+
+@media (min-width: 769px) {
+    /* Hide mobile elements on desktop */
+    .mobile-only {
+        display: none !important;
+    }
+    
+    /* Show desktop elements */
+    .desktop-only {
+        display: block !important;
+    }
+}
+
+/* Mobile menu toggle button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mobile back button */
+.mobile-back-btn {
+    display: none;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .mobile-back-btn {
+        display: block;
+    }
+}
