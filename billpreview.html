@@ -62,7 +62,7 @@
                     <table class="bill-table">
                         <tr>
                             <td>Bill No:</td>
-                            <td>TR20230001</td>
+                            <td id="fpid">TR20230001</td>
                         </tr>
                         <tr>
                             <td>Date:</td>
@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <td>Veh. No:</td>
-                            <td>JH05AB1234</td>
+                            <td id="vehicleno">JH05AB1234</td>
                         </tr>
                         <tr>
                             <td>Fuel:</td>
@@ -104,5 +104,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/common.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const data = JSON.parse(localStorage.getItem("billData") || "{}");
+    if (data) {
+        document.getElementById("fpid").textContent = data.Fp_id || "";
+        document.getElementById("nozlno").textContent = data.Nozl_no || "";
+        document.getElementById("vehicleno").textContent = data.Vehicle_Number || "";
+        document.getElementById("fueltype").textContent = data.Fuel_Type || "";
+        document.getElementById("density").textContent = data.Density || "";
+        document.getElementById("rate").textContent = parseFloat(data.Rate_per_litre || 0).toFixed(2);
+        document.getElementById("sale").textContent = parseFloat(data.sale || 0).toFixed(2);
+        document.getElementById("volume").textContent = parseFloat(data.Volume || 0).toFixed(2);
+        document.getElementById("date").textContent = data.Date || "";
+    }
+});
+</script>
+
+
 </body>
 </html>
