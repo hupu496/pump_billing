@@ -95,16 +95,21 @@
         const table = document.querySelector("#reportTable tbody");
 
         rows.forEach(row => {
-          let tr = document.createElement("tr");
-          tr.innerHTML = `
-            <td>${row['gsx$name']?.$t || ''}</td>
-            <td>${row['gsx$email']?.$t || ''}</td>
-            <td>${row['gsx$mobile']?.$t || ''}</td>
-            <td>${row['gsx$services']?.$t || ''}</td>
-            <td>${row['gsx$message']?.$t || ''}</td>
-          `;
-          table.appendChild(tr);
+        let tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${row['gsx$fpid']?.$t || ''}</td>
+            <td>${row['gsx$nozlno']?.$t || ''}</td>
+            <td>${row['gsx$vehiclenumber']?.$t || ''}</td>
+            <td>${row['gsx$fueltype']?.$t || ''}</td>
+            <td>${row['gsx$density']?.$t || ''}</td>
+            <td>${row['gsx$rateperlitre']?.$t || ''}</td>
+            <td>${row['gsx$sale']?.$t || ''}</td>
+            <td>${row['gsx$volume']?.$t || ''}</td>
+            <td>${row['gsx$date']?.$t || ''}</td>
+        `;
+        table.appendChild(tr);
         });
+
       });
   </script>
     <script>
