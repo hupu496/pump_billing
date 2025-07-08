@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     endDateInput.valueAsDate = today;
 
     // Fetch data from Google Sheet
-    fetch('https://script.google.com/macros/s/AKfycbzsC0vIyn9FODdK5LZCGX4KiqPNusAYIOmEVmikJNtrrAzCz7SVH01x0K8AmvxHy-wL/exec')
+    fetch('https://script.google.com/macros/s/AKfycbwhU2YnkRlHcMdrA1cAxlbxqESjkoxuqxbXM5Amtpiyn_1HrxOX0YEZ3wvDCSz-gIaj/exec')
         .then(response => response.json())
         .then(data => {
             allData = data;
@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
             tr.innerHTML = `
                 <td>${row['fp_id'] || ''}</td>
                 <td>${row['nozl_no'] || ''}</td>
-                <td>${row['vehicle_Number'] || ''}</td>
-                <td>${row['fuel_Type'] || ''}</td>
+                <td>${row['vehicle_number'] || ''}</td>
+                <td>${row['fuel_type'] || ''}</td>
                 <td>${row['density'] || ''}</td>
                 <td>${row['rate_per_litre'] || ''}</td>
                 <td>${row['sale'] || ''}</td>
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const endDate = new Date(endDateInput.value);
 
         const filteredData = allData.filter(row => {
-            const rowDate = new Date(row['Date']);
+            const rowDate = new Date(row['date']);
             return rowDate >= startDate && rowDate <= endDate;
         });
 
