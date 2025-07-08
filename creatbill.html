@@ -17,7 +17,7 @@
                 <button class="btn-close btn-close-white mobile-only" onclick="toggleSidebar()" aria-label="Close"></button>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="createbill.html"><i class="fas fa-file-invoice me-2"></i> Create Bill</a></li>
+                <li><a href="creatbill.html"><i class="fas fa-file-invoice me-2"></i> Create Bill</a></li>
                 <li><a href="reports.html"><i class="fas fa-chart-bar me-2"></i> Reports</a></li>
                 <li><a href="index.html"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
             </ul>
@@ -51,24 +51,24 @@
                 
                 <div class="card">
                     <div class="card-body">
-                        <form action="https://script.google.com/macros/s/AKfycbxUzQPV9D9wxqcRTh7Vr4NggizaQfPZ64zg_aHNL_hrlqyyD1jgo8FD57AbVum_exns/exec" method="post" id="sheetdb-forms">
+                     <form action="https://script.google.com/macros/s/AKfycbzsC0vIyn9FODdK5LZCGX4KiqPNusAYIOmEVmikJNtrrAzCz7SVH01x0K8AmvxHy-wL/exec" method="post" id="sheetdb-forms">
                    
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">FP ID</label>
-                                    <input type="text" class="form-control"  name="Fp_id"  required>
+                                    <input type="text" class="form-control"  name="fp_id"  required>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">NOZL NO</label>
-                                    <input type="text"  class="form-control" name="Nozl_no"  required>
+                                    <input type="text"  class="form-control" name="nozl_no"  required>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">VEHICLE NUMBER</label>
-                                    <input type="text" class="form-control" name="Vehicle_Number"  required>
+                                    <input type="text" class="form-control" name="vehicle_number"  required>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="fuelType" class="form-label">FUEL TYPE</label>
-                                    <select class="form-select" id="fuelType" name="Fuel_Type" required>
+                                    <select class="form-select" id="fuelType" name="fuel_type" required>
                                         <option value="">Select Fuel</option>
                                         <option value="Petrol">Petrol</option>
                                         <option value="Diesel">Diesel</option>
@@ -78,12 +78,12 @@
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">DENSITY</label>
-                                    <input type="number" class="form-control" id="quantity" min="1" name="Density" required>
+                                    <input type="number" class="form-control" id="quantity" min="1" name="density" required>
                                 </div>
                                
                                 <div class="col-md-6">
                                     <label for="rate" class="form-label">RATE PER LITRE</label>
-                                    <input type="number" class="form-control" id="rate" min="1" step="0.01"name="Rate_per_litre" required>
+                                    <input type="number" class="form-control" id="rate" min="1" step="0.01"name="rate_per_litre" required>
                                 </div>
                                  <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">SALE</label>
@@ -91,11 +91,11 @@
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">VOLUME</label>
-                                    <input type="text"  id="volume" class="form-control" name="Volume" readonly>
+                                    <input type="text"  id="volume" class="form-control" name="volume" readonly>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">DATE</label>
-                                  <input type="date"  id="date" class="form-control" name="Date"readonly>
+                                  <input type="date"  id="date" class="form-control" name="date"readonly>
                                 </div>
                             </div>
                             <div class="mobile-only mt-3">

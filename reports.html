@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
     endDateInput.valueAsDate = today;
 
     // Fetch data from Google Sheet
-    fetch('https://script.google.com/macros/s/AKfycbxUzQPV9D9wxqcRTh7Vr4NggizaQfPZ64zg_aHNL_hrlqyyD1jgo8FD57AbVum_exns/exec')
+    fetch('https://script.google.com/macros/s/AKfycbzsC0vIyn9FODdK5LZCGX4KiqPNusAYIOmEVmikJNtrrAzCz7SVH01x0K8AmvxHy-wL/exec')
         .then(response => response.json())
         .then(data => {
             allData = data;
@@ -118,15 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
         data.forEach(row => {
             const tr = document.createElement("tr");
             tr.innerHTML = `
-                <td>${row['fpi_d'] || ''}</td>
+                <td>${row['fp_id'] || ''}</td>
                 <td>${row['nozl_no'] || ''}</td>
-                <td>${row['Vehicle_Number'] || ''}</td>
-                <td>${row['Fuel_Type'] || ''}</td>
-                <td>${row['Density'] || ''}</td>
-                <td>${row['Rate_per_litre'] || ''}</td>
+                <td>${row['vehicle_Number'] || ''}</td>
+                <td>${row['fuel_Type'] || ''}</td>
+                <td>${row['density'] || ''}</td>
+                <td>${row['rate_per_litre'] || ''}</td>
                 <td>${row['sale'] || ''}</td>
-                <td>${row['Volume'] || ''}</td>
-                <td>${formatDateTime(row['Date'])}</td>
+                <td>${row['volume'] || ''}</td>
+                <td>${formatDateTime(row['date'])}</td>
             `;
             tableBody.appendChild(tr);
         });

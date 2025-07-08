@@ -110,13 +110,13 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(data)
     
     // Example: Fill preview elements
-    document.getElementById("preview-fpid").textContent = data.Fp_id || '';
-    document.getElementById("preview-date").textContent = data.Date || '';
-    document.getElementById("preview-time").textContent = formatDateTime(data.Date) || '';
-    document.getElementById("preview-vehiclenumber").textContent = data.Vehicle_Number || '';
-    document.getElementById("preview-fueltype").textContent = data.Fuel_Type || '';
-    document.getElementById("preview-rateperlitre").textContent = data.Rate_per_litre ? `₹${data.Rate_per_litre}` : '';
-    document.getElementById("preview-volume").textContent = data.Volume ? `${data.Volume} L` : '';
+    document.getElementById("preview-fpid").textContent = data.fp_id || '';
+    document.getElementById("preview-date").textContent = data.date || '';
+    document.getElementById("preview-time").textContent = formatDateTime(data.date) || '';
+    document.getElementById("preview-vehiclenumber").textContent = data.vehicle_number || '';
+    document.getElementById("preview-fueltype").textContent = data.fuel_type || '';
+    document.getElementById("preview-rateperlitre").textContent = data.rate_per_litre ? `₹${data.rate_per_litre}` : '';
+    document.getElementById("preview-volume").textContent = data.volume ? `${data.volume} L` : '';
     document.getElementById("preview-sale").textContent = data.sale ? `₹${data.sale}` :'';
     
 });
