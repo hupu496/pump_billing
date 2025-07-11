@@ -8,6 +8,76 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+ <style>
+    .bill-container {
+    width: 58mm; /* Default preview width */
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-family: monospace;
+    font-size: 14px;
+    background: #fff;
+}
+
+        /* Thermal printer specific styles */
+      @media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    #printableBill, #printableBill * {
+        visibility: visible;
+    }
+
+    #printableBill {
+        width: 58mm; /* Default 58mm width */
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 5px;
+        font-family: monospace;
+        font-size: 12px;
+        line-height: 1.3;
+    }
+
+    .bill-header, .bill-footer {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .bill-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .bill-table td {
+        padding: 2px 0;
+        font-size: 12px;
+    }
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn, .navbar, .sidebar, .no-print {
+        display: none !important;
+    }
+}
+
+@page {
+    size: 58mm auto; /* Default to 58mm wide */
+    margin: 0;
+}
+
+
+    </style>
 <body>
     <div id="dashboard">
         <!-- Sidebar -->
@@ -41,18 +111,19 @@
             </nav>
 
             <!-- Bill Preview Content -->
-            <div class="dashboard-page">
-                <button class="btn btn-secondary mobile-only mobile-back-btn" onclick="window.location.href='creatbill.html'">
-                    <i class="fas fa-arrow-left me-1"></i> Back
-                </button>
-                <div class="d-flex justify-content-between align-items-center mb-4">
+       <div class="d-flex justify-content-between align-items-center mb-4">
                     <h4>Bill Preview</h4>
                     <div>
-                        <button class="btn btn-success me-2" onclick="window.print()"><i class="fas fa-print me-1"></i> Print</button>
-                        <button class="btn btn-secondary desktop-only" onclick="window.location.href='creatbill.html'"><i class="fas fa-arrow-left me-1"></i> Back</button>
+                        <button class="btn btn-success me-2" onclick="printBill()">
+                            <i class="fas fa-print me-1"></i> Print
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.location.href='creatbill.html'">
+                            <i class="fas fa-arrow-left me-1"></i> Back
+                        </button>
                     </div>
                 </div>
                 
+                <!-- This is the bill content that will be printed -->
                 <div class="bill-container" id="printableBill">
                     <div class="bill-header">
                         <strong>TIRTHA FUEL CENTRE</strong><br>
@@ -62,40 +133,64 @@
                     <table class="bill-table">
                         <tr>
                             <td>Bill No:</td>
-                            <td id="preview-fpid"></td>
+                            <td id="preview-billno">77429-DUPLT</td>
                         </tr>
                         <tr>
-                            <td>Date:</td>
-                            <td id="preview-date"></td>
+                            <td>Trns ID:</td>
+                            <td id="preview-transid">0000000300017965</td>
                         </tr>
                         <tr>
-                            <td>Time:</td>
-                            <td id="preview-time"></td>
+                            <td>Atnd ID:</td>
+                            <td id="preview-attendid"></td>
                         </tr>
                         <tr>
                             <td>Veh. No:</td>
-                            <td id="preview-vehiclenumber"></td>
+                            <td id="preview-vehicle_number">NotEntered</td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td id="preview-date">20/06/25</td>
+                        </tr>
+                        <tr>
+                            <td>Time:</td>
+                            <td id="preview-time">12:44:29</td>
+                        </tr>
+                        <tr>
+                            <td>FP ID:</td>
+                            <td id="preview-fp_id">1</td>
+                        </tr>
+                        <tr>
+                            <td>Nozl No:</td>
+                            <td id="preview-nozl_no">1</td>
                         </tr>
                         <tr>
                             <td>Fuel:</td>
-                            <td id="preview-fueltype"></td>
+                            <td id="preview-fuel_type">DIESEL</td>
+                        </tr>
+                        <tr>
+                            <td>Density:</td>
+                            <td id="preview-density">833.3kg/m3</td>
+                        </tr>
+                        <tr>
+                            <td>Preset:</td>
+                            <td id="preview-preset">Rs.1800</td>
                         </tr>
                         <tr>
                             <td>Rate:</td>
-                            <td id="preview-rateperlitre"></td>
+                            <td id="preview-rate">Rs.93.43</td>
                         </tr>
                         <tr>
-                            <td>Quantity:</td>
-                            <td id="preview-volume"></td>
+                            <td>Sale:</td>
+                            <td id="preview-sale">Rs.1800.00</td>
                         </tr>
                         <tr>
-                            <td><strong>Total:</strong></td>
-                           <td id="preview-sale"></td>
+                            <td>Volume:</td>
+                            <td id="preview-volume">19.27L</td>
                         </tr>
                     </table>
                     <div class="bill-footer">
-                         <img src="assets/indianoil.png" alt="Company Logo" width="100%">
-                        THANK YOU VISIT AGAIN.<br><br>
+                        THANK YOU VISIT AGAIN.<br>
+                        <!-- <img src="assets/indianoil.png" alt="Company Logo" width="100%"> -->
                     </div>
                 </div>
             </div>
@@ -104,43 +199,43 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/common.js"></script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const data = JSON.parse(localStorage.getItem("billData") || "{}");
-    console.log(data)
-    
-    // Example: Fill preview elements
-    document.getElementById("preview-fpid").textContent = data.fp_id || '';
-    document.getElementById("preview-date").textContent = data.date || '';
-    document.getElementById("preview-time").textContent = formatDateTime(data.date) || '';
-    document.getElementById("preview-vehiclenumber").textContent = data.vehicle_number || '';
-    document.getElementById("preview-fueltype").textContent = data.fuel_type || '';
-    document.getElementById("preview-rateperlitre").textContent = data.rate_per_litre ? `₹${data.rate_per_litre}` : '';
-    document.getElementById("preview-volume").textContent = data.volume ? `${data.volume} L` : '';
-    document.getElementById("preview-sale").textContent = data.sale ? `₹${data.sale}` :'';
-    
-});
-  function formatDateTime(dateStr) {
-    if (!dateStr) return '';
-    const date = new Date(dateStr);
-    if (isNaN(date.getTime())) return dateStr; // fallback if invalid date
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const data = JSON.parse(localStorage.getItem("billData") || '{}');
+        console.log("Loaded billData:", data); // optional debug log
 
-    const pad = n => n.toString().padStart(2, '0');
+        document.getElementById("preview-billno").textContent = data.billno || 'NotGenerated';
+        document.getElementById("preview-transid").textContent = data.transid || 'N/A';
+        document.getElementById("preview-attendid").textContent = data.attendId || '';
+        document.getElementById("preview-vehicle_number").textContent = data.vehicle_number || 'NotEntered';
+        document.getElementById("preview-date").textContent = formatDate(data.date) || '20/06/25';
+        document.getElementById("preview-time").textContent = formatTime(data.date) || '12:44:29';
+        document.getElementById("preview-fp_id").textContent = data.fp_id || '1';
+        document.getElementById("preview-nozl_no").textContent = data.nozl_no || '1';
+        document.getElementById("preview-fuel_type").textContent = data.fuel_type || 'DIESEL';
+        document.getElementById("preview-density").textContent = data.density ? data.density + ' kg/m3' : '833.3 kg/m3';
+        document.getElementById("preview-preset").textContent = data.sale || '0.00';
+        document.getElementById("preview-rate").textContent = data.rate_per_litre ? 'Rs.' + data.rate_per_litre : 'Rs.93.43';
+        document.getElementById("preview-sale").textContent = data.sale ? 'Rs.' + parseFloat(data.sale).toFixed(2) : 'Rs.1800.00';
+        document.getElementById("preview-volume").textContent = data.volume || '0.00';
+    });
 
-    const day = pad(date.getDate());
-    const month = pad(date.getMonth() + 1);
-    const year = date.getFullYear();
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        return `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getFullYear()).slice(-2)}`;
+    }
 
-    const hours = pad(date.getHours());
-    const minutes = pad(date.getMinutes());
-    const seconds = pad(date.getSeconds());
+    function formatTime(dateStr) {
+        if (!dateStr) return '';
+        const d = new Date(dateStr);
+        return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}`;
+    }
 
-    return `${hours}:${minutes}:${seconds}`;
-}
-
+    function printBill() {
+        window.print();
+    }
 </script>
-
-
 
 </body>
 </html>

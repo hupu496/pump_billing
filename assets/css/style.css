@@ -175,22 +175,6 @@ body {
 }
 
 /* Print Styles */
-@media print {
-    body * {
-        visibility: hidden;
-    }
-    #printableBill, #printableBill * {
-        visibility: visible;
-    }
-    #printableBill {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        border: none;
-        box-shadow: none;
-    }
-}
 
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {

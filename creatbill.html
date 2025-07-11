@@ -57,6 +57,8 @@
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">FP ID</label>
                                     <input type="text" class="form-control"  name="fp_id"  required>
+                                    <input type="hidden" name="billno">
+                                    <input type="hidden" name="transid">
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">NOZL NO</label>
@@ -78,16 +80,16 @@
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">DENSITY</label>
-                                    <input type="number" class="form-control" id="quantity" min="1" name="density" required>
+                                    <input type="text" class="form-control" id="quantity" min="1" name="density" required>
                                 </div>
                                
                                 <div class="col-md-6">
                                     <label for="rate" class="form-label">RATE PER LITRE</label>
-                                    <input type="number" class="form-control" id="rate" min="1" step="0.01"name="rate_per_litre" required>
+                                    <input type="text" class="form-control" id="rate" min="1" step="0.01"name="rate_per_litre" required>
                                 </div>
                                  <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">SALE</label>
-                                  <input type="number" class="form-control"  id="sale" min="1"name="sale" required>
+                                  <input type="text" class="form-control"  id="sale" min="1"name="sale" required>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="quantity" class="form-label">VOLUME</label>
@@ -115,67 +117,44 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
    
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const dateInput = document.getElementById("date");       // Your date input field
-    const saleInput = document.getElementById("sale");       // Sale amount input
-    const rateInput = document.getElementById("rate"); // Rate per litre input
-    const volumeInput = document.getElementById("volume");   // Output field for volume
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Generate values
+      const billNo = Math.floor(100000 + Math.random() * 900000) + '-DUPLT';
+      const transId = Date.now().toString();
+      document.querySelector('input[name="billno"]').value = billNo;
+      document.querySelector('input[name="transid"]').value = transId;
 
-    // Set current date
-    const today = new Date().toISOString().split('T')[0];
-    if (dateInput) dateInput.value = today;
+      // Set today's date
+      document.getElementById("date").value = new Date().toISOString().split('T')[0];
 
-    // Auto-calculate volume = sale / rate
-    function calculateVolume() {
-        const sale = parseFloat(saleInput.value) || 0;
-        const rate = parseFloat(rateInput.value) || 0;
-        const volume = rate > 0 ? (sale / rate).toFixed(2) : '';
-        volumeInput.value = volume;
-    }
+      // Volume auto-calculation
+      function calculateVolume() {
+        const sale = parseFloat(document.getElementById("sale").value) || 0;
+        const rate = parseFloat(document.getElementById("rate").value) || 0;
+        document.getElementById("volume").value = rate > 0 ? (sale / rate).toFixed(2) : '';
+      }
+      document.getElementById("sale").addEventListener("input", calculateVolume);
+      document.getElementById("rate").addEventListener("input", calculateVolume);
 
-    if (saleInput && rateInput) {
-        saleInput.addEventListener("input", calculateVolume);
-        rateInput.addEventListener("input", calculateVolume);
-    }
+      // Submit handler
+      document.getElementById("sheetdb-forms").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    const form = document.getElementById("sheetdb-forms");
-    if (form) {
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+        const formData = new FormData(this);
+        const dataObject = {};
+        formData.forEach((value, key) => dataObject[key] = value);
+        localStorage.setItem("billData", JSON.stringify(dataObject));
 
-            const formData = new FormData(form);
-
-            // Store data locally for preview
-            const dataObject = {};
-            formData.forEach((value, key) => {
-                dataObject[key] = value;
-            });
-            localStorage.setItem("billData", JSON.stringify(dataObject));
-
-            // Submit to Google Sheets using Apps Script
-            fetch(form.action, {
-                method: "POST",
-                body: formData,
-            })
-            .then(response => {
-                // Handle JSON or plain text safely
-                return response.json().catch(() => ({}));
-            })
-            .then(() => {
-                // Redirect to preview page
-                window.location.href = "billpreview.html";
-            })
-            .catch(error => {
-                alert("Failed to submit data. Please try again.");
-                console.error(error);
-            });
-        });
-    }
-});
-</script>
-
-
-
+        fetch(this.action, { method: "POST", body: formData })
+          .then(res => res.json().catch(() => ({})))
+          .then(() => window.location.href = "billpreview.html")
+          .catch(err => {
+            alert("Submission failed.");
+            console.error(err);
+          });
+      });
+    });
+  </script>
 </body>
 </html>
