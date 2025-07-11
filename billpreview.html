@@ -16,14 +16,14 @@
     }
 
     html, body {
-        margin-top: -40px;
+        margin-top: -80px;
         padding: 0;
         width: 210mm;
         height: 297mm;
         background: #fff;
         color: #000;
-        font-size: 28px !important;
-        font-family: 'Courier New', monospace;
+        /* font-size: 28px !important; */
+       
         line-height: 0.7;
     }
 
@@ -44,13 +44,13 @@
 
     .bill-header, .bill-footer {
         text-align: left;
-        font-size: 38px !important;
+        font-size: 50px !important;
         font-weight: 800;
     }
 
     .bill-table {
         width: 100%;
-        font-size: 32px !important;
+        font-size: 50px !important;
         border-collapse: collapse;
     }
 
@@ -207,10 +207,10 @@
         document.getElementById("preview-nozl_no").textContent = data.nozl_no || '1';
         document.getElementById("preview-fuel_type").textContent = data.fuel_type || 'DIESEL';
         document.getElementById("preview-density").textContent = data.density ? data.density + ' kg/m3' : '833.3 kg/m3';
-        document.getElementById("preview-preset").textContent = data.sale || '0.00';
+        document.getElementById("preview-preset").textContent = data.sale ? 'Rs.'+ data.sale:'Rs. 00' || '0.00';
         document.getElementById("preview-rate").textContent = data.rate_per_litre ? 'Rs.' + data.rate_per_litre : 'Rs.93.43';
         document.getElementById("preview-sale").textContent = data.sale ? 'Rs.' + parseFloat(data.sale).toFixed(2) : 'Rs.1800.00';
-        document.getElementById("preview-volume").textContent = data.volume || '0.00';
+        document.getElementById("preview-volume").textContent = data.volume + 'L';
     });
 
     function formatDate(dateStr) {
