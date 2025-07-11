@@ -230,16 +230,7 @@
         window.print();
     }
 </script>
-<script>
-    window.onload = function() {
-        const now = new Date();
-        const offset = now.getTimezoneOffset();
-        const localTime = new Date(now.getTime() - offset * 60000)
-            .toISOString()
-            .slice(0, 16); // "YYYY-MM-DDTHH:MM"
-        document.getElementById("date").value = localTime;
-    };
-</script>
+
 
 </body>
 </html>
