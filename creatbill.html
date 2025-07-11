@@ -55,14 +55,14 @@
                    
                             <div class="row mb-3">
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label for="vehicleNumber" class="form-label">FP ID</label>
-                                    <input type="text" class="form-control"  name="fp_id"  required>
+                                  
+                                    <input type="hidden" class="form-control"  name="fp_id" value="1"  required>
                                     <input type="hidden" name="billno">
                                     <input type="hidden" name="transid">
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
-                                    <label for="vehicleNumber" class="form-label">NOZL NO</label>
-                                    <input type="text"  class="form-control" name="nozl_no"  required>
+                                  
+                                    <input type="hidden"  class="form-control" name="nozl_no" value="1" required>
                                 </div>
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <label for="vehicleNumber" class="form-label">VEHICLE NUMBER</label>
@@ -121,7 +121,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Generate values
     const billNo = Math.floor(100000 + Math.random() * 900000) + '-ORGNL';
-    const transId = Date.now().toString();
+    const randomPart = Math.floor(100000000 + Math.random() * 900000000); // 9-digit number
+    const transId = '0000000' + randomPart.toString(); // 7 zeros + 9 digits = 16 total
     document.querySelector('input[name="billno"]').value = billNo;
     document.querySelector('input[name="transid"]').value = transId;
 
