@@ -9,20 +9,22 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
  <style>
-   
 @media print {
     * {
         visibility: hidden;
-       
+      
     }
 
     html, body {
-        margin: 0;
+        margin-top: -40px;
         padding: 0;
         width: 210mm;
         height: 297mm;
         background: #fff;
         color: #000;
+        font-size: 28px !important;
+        font-family: 'Courier New', monospace;
+        line-height: 0.7;
     }
 
     #printableBill, #printableBill * {
@@ -33,32 +35,27 @@
 
     #printableBill {
         width: 100%;
-        max-width: 210mm;
-        height: auto;
+        max-width: 190mm; /* Leave room for safe margins */
         margin: 0 auto;
-        padding: 10mm 15mm;
-        font-size: 24px !important;
-        font-family: 'Courier New', monospace;
-        line-height: 1.2;
-        overflow: hidden;
+        /* padding: 10mm 10mm; */
         page-break-inside: avoid;
+        overflow: hidden;
     }
 
     .bill-header, .bill-footer {
-        text-align: center;
-       
-        font-size: 32px !important;
+        text-align: left;
+        font-size: 38px !important;
+        font-weight: 800;
     }
 
     .bill-table {
         width: 100%;
-        font-size: 26px !important;
+        font-size: 32px !important;
         border-collapse: collapse;
     }
 
     .bill-table td {
-        padding: 8px 0 !important;
-       
+        padding: 6px 0 !important;
         vertical-align: top;
     }
 
@@ -71,9 +68,8 @@
         margin: 0;
     }
 }
+</style>
 
-
-    </style>
 <body>
     <div id="dashboard">
         <!-- Sidebar -->
@@ -121,6 +117,7 @@
                 
                 <!-- This is the bill content that will be printed -->
                 <div class="bill-container" id="printableBill">
+                    <img src="assets/indianoil.png" style="text-align: center;" alt="Company Logo" width="60%">
                     <div class="bill-header">
                         <strong>TIRTHA FUEL CENTRE</strong><br>
                         KHANAMODA.BAHARAGORA<br>
